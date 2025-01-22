@@ -3,9 +3,9 @@ using UnityEngine;
 
 public static class TransitionEvent
 {
-    public static event Action<GameSceneSO, Vector3, bool> LoadRequestEvent;
-    public static void CallLoadRequestEvent(GameSceneSO targetScene, Vector3 targetPos, bool isPlayAnim)
+    public static event Action<GameSceneSO, bool, Vector3, bool> LoadSceneRequestEvent;
+    public static void CallLoadSceneRequestEvent(GameSceneSO targetScene, bool isResetPLayerPos, Vector3 targetPos, bool isPlayAnim)
     {
-        LoadRequestEvent?.Invoke(targetScene, targetPos, isPlayAnim);
+        LoadSceneRequestEvent?.Invoke(targetScene, isResetPLayerPos, targetPos, isPlayAnim);
     }
 }
