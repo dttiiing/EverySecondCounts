@@ -74,6 +74,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # custom
-Assets/Scenes/test_scene.unity
-Assets/Tile Map/
 .vscode/
