@@ -196,8 +196,8 @@ GameObject:
   - component: {fileID: 486243657}
   - component: {fileID: 486243656}
   - component: {fileID: 486243658}
-  m_Layer: 0
-  m_Name: FragileWall
+  m_Layer: 6
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497087974585426014, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
       propertyPath: m_Name
-      value: Emitter_Molten_1
+      value: Emitter_Soft_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1115514328}
   - component: {fileID: 1115514327}
   - component: {fileID: 1115514329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,8 +689,8 @@ GameObject:
   - component: {fileID: 1183000403}
   - component: {fileID: 1183000402}
   - component: {fileID: 1183000401}
-  m_Layer: 0
-  m_Name: SolidWall
+  m_Layer: 6
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2537,7 +2537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6497087974585426014, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
       propertyPath: m_Name
-      value: Emitter_Frozen_1
+      value: Emitter_Hard_1
       objectReference: {fileID: 0}
     - target: {fileID: 7841164835372493746, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
       propertyPath: m_Size.y
@@ -5767,7 +5767,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7422940965019758236, guid: 4980e5ed4f75b154292f6b088a61d2ca, type: 3}
       propertyPath: m_Name
-      value: Switch_Molzen_1
+      value: Switch_Soft_1
       objectReference: {fileID: 0}
     - target: {fileID: 8875574476393935875, guid: 4980e5ed4f75b154292f6b088a61d2ca, type: 3}
       propertyPath: m_RootOrder
