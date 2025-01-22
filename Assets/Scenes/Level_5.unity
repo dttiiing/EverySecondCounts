@@ -2857,9 +2857,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1078260479950836366, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
-      propertyPath: curType
-      value: 1
+    - target: {fileID: 744460735306698436, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 744460735306698436, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5868395439723976032, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
       propertyPath: m_RootOrder
@@ -2908,6 +2912,14 @@ PrefabInstance:
     - target: {fileID: 6497087974585426014, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
       propertyPath: m_Name
       value: Emitter_Molten
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841164835372493746, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_Size.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841164835372493746, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_Offset.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
