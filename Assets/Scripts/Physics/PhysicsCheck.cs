@@ -39,6 +39,7 @@ public class PhysicsCheck : MonoBehaviour
     ///<summary>返回是否在地面上的状态</summary>
     public bool IsGround()
     {
+        Debug.Log("IsGround:" + _isGround);
         return _isGround;
     }
     ///<summary>在选中时绘制地面碰撞检测范围</summary>
