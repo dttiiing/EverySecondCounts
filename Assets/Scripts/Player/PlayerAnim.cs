@@ -48,18 +48,11 @@ public class PlayerAnimation : MonoBehaviour
     private void SetAnimation()
     {
         float moveInputX = math.abs(_inputControl.GamePlay.Move.ReadValue<Vector2>().x);
-        bool isRunning = moveInputX > 0.7 ? true : false;
-        bool isWalking = moveInputX > 0.01 ? true : false;
-        _animator.SetBool("isRunning", isRunning);
-        _animator.SetBool("isWalking", isWalking);
+        bool isMoving = moveInputX > 0.01 ? true : false;
+        _animator.SetBool("isMoving", isMoving);
         _animator.SetBool("isDead", _playerController.isDead);
         _animator.SetBool("isGround", _physicsCheck.IsGround());
         _animator.SetFloat("velocityY", _rigidbody.velocity.y);
 
-    }
-    ///<summary>播放玩家受伤动画</summary>
-    public void PlayerInjured()
-    {
-        _animator.SetTrigger("injured");
     }
 }

@@ -7,12 +7,12 @@ public class PhysicsCheck : MonoBehaviour
 {
     ///<summary>地面图层</summary>
     private LayerMask _groundLayer;
-    ///<summary>角色底部偏移量</summary>
-    private Vector2 _buttomOffset;
     ///<summary>是否在地面上</summary>
     private bool _isGround;
     ///<summary>检测半径</summary>
     private float _checkRadius;
+    ///<summary>给碰撞组件描边选择颜色</summary>
+    public Color gizmoColor = Color.red;
 
     private void Awake()
     {
@@ -28,13 +28,12 @@ public class PhysicsCheck : MonoBehaviour
         _isGround = false;
         _checkRadius = 0.1f;
         _groundLayer = LayerMask.GetMask("Ground");
-        _buttomOffset = new Vector2(-0.11f, 0);
     }
     ///<summary>执行地面检测</summary>
     private void Check()
     {
         //  监测是否在地上
-        _isGround = Physics2D.OverlapCircle((Vector2)transform.position + _buttomOffset, _checkRadius, _groundLayer);
+        _isGround = Physics2D.OverlapCircle((Vector2)transform.position, _checkRadius, _groundLayer);
     }
     ///<summary>返回是否在地面上的状态</summary>
     public bool IsGround()
@@ -46,6 +45,7 @@ public class PhysicsCheck : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         //绘制地面碰撞检测
-        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(-0.11f, 0), 0.1f);
+        Gizmos.color = gizmoColor;
+        Gizmos.DrawWireSphere((Vector2)transform.position, 0.1f);
     }
 }

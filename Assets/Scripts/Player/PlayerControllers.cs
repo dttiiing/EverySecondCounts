@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour
     private void PlayerTransForm(float _tmpdir)
     {
         // 根据输入方向调整角色朝向
-        if (_tmpdir > 0)
+        if (_tmpdir < 0)
             transform.localScale = new Vector3(1, 1, 1);
-        else if (_tmpdir < 0)
+        else if (_tmpdir > 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
 

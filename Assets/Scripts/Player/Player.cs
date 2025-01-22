@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-enum PlayerStatus { melt, normal, freeze }
+enum PlayerStatus { soft, normal, hard }
 
 public class Player : MonoBehaviour
 {
