@@ -90,6 +90,4 @@ public class SceneLoadManager : MonoBehaviour
 
         _isLoading = false;
     }
-
-    
 }
