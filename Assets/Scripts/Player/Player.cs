@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-enum PlayerStatus { soft, normal, hard }
-
 public class Player : MonoBehaviour
 {
     ///<summary>玩家所处状态</summary>
@@ -21,7 +19,7 @@ public class Player : MonoBehaviour
     ///<summary>初始化角色属性</summary>
     private void Init()
     {
-        _status = (int)PlayerStatus.normal;
+        _status = (int)PlayerState.NORMAL;
     }
 
     ///<summary>玩家死亡</summary>

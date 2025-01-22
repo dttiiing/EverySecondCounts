@@ -20,7 +20,10 @@ public class Switch : MonoBehaviour, IInteractable
     {
         foreach (var emitter in emitterList)
         {
-            emitter.SwitchEmitter();
+            if(emitter.gameObject.activeSelf)
+            {
+                emitter.SwitchEmitter();
+            }
         }
     }
 

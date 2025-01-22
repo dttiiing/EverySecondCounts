@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EmitterType
+public enum PlayerState
 {
-    Normal = 0,
-    Molten = 1,
-    Frozen = 2,
+    NORMAL = 0,
+    SOFT = 1,
+    HARD = 2,
 }

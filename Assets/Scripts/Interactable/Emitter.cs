@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Emitter : MonoBehaviour
 {
-    public EmitterType curType = EmitterType.Normal;
+    public PlayerState curState = PlayerState.NORMAL;
     public bool isOpen = true;
 
     public void SwitchEmitter()
@@ -16,10 +16,10 @@ public class Emitter : MonoBehaviour
 
     public void ChangeEmitterType()
     {
-        int nextType = ((int)curType + 1) % 3;
-        curType = (EmitterType)nextType;
+        int nextState = ((int)curState + 1) % 3;
+        curState = (PlayerState)nextState;
 
-        Debug.Log($"{name}'s cur emitter type is {curType}");
+        Debug.Log($"{name}'s cur emitter type is {curState}");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
