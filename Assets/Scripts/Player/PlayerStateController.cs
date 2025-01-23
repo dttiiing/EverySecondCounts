@@ -28,7 +28,7 @@ public class PlayerStateController : MonoBehaviour
             else
                 Debug.LogError($"GameObject with name {styleName} not found!");
         }
-        SwitchStyle(PlayerState.HARD);
+        SwitchStyle(PlayerState.NORMAL);
     }
 
     /// <summary> 获取当前形态的 IPlayer 接口 </summary>

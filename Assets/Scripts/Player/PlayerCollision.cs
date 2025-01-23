@@ -41,13 +41,4 @@ public class PlayerCollision : MonoBehaviour
         Gizmos.color = Color.red; ;
         Gizmos.DrawWireSphere((Vector2)transform.position, checkRadius);
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (_currentPlayerForm == null || _currentPlayerForm.GetPlayerState() != PlayerState.HARD) return;
-
-        ContactPoint2D[] contactPoints = collision.contacts;
-        WeakGrid weakGrid = collision.gameObject.GetComponent<WeakGrid>();
-        if (weakGrid == null) return;
-        weakGrid.EraseTile(contactPoints);
-    }
 }
