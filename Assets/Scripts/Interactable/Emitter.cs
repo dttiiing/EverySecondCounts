@@ -5,6 +5,8 @@ using UnityEngine;
 public class Emitter : MonoBehaviour
 {
     public SpriteRenderer shine;
+    public SpriteRenderer signImage;
+    public BoxCollider2D colli;
 
     public PlayerState curState = PlayerState.NORMAL;
     public bool isOpen = true;
@@ -13,6 +15,7 @@ public class Emitter : MonoBehaviour
     {
         ChangeShineColor();
         shine.gameObject.SetActive(isOpen);
+        colli.enabled = isOpen;
     }
 
     public void SwitchEmitter()
@@ -40,14 +43,17 @@ public class Emitter : MonoBehaviour
         {
             case PlayerState.NORMAL:
                 shine.color = Color.white;
+                signImage.color = Color.white;
                 break;
 
             case PlayerState.SOFT:
                 shine.color = Color.red;
+                signImage.color = Color.red;
                 break;
 
             case PlayerState.HARD:
                 shine.color = Color.blue;
+                signImage.color = Color.blue;
                 break;
         }
     }

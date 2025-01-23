@@ -20,7 +20,10 @@ public class Rotor : MonoBehaviour, IInteractable
     {
         foreach(var emitter in emitterList)
         {
-            emitter.ChangeEmitterType();
+            if(emitter.isOpen)
+            {
+                emitter.ChangeEmitterType();
+            }
         }
     }
 
