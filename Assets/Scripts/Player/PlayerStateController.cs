@@ -28,12 +28,11 @@ public class PlayerStateController : MonoBehaviour
             else
                 Debug.LogError($"GameObject with name {styleName} not found!");
         }
-        SwitchStyle(PlayerState.NORMAL);
+        SwitchStyle(PlayerState.HARD);
     }
 
     /// <summary> 获取当前形态的 IPlayer 接口 </summary>
     public IPlayer GetPlayerStyle() { return _currentPlayerForm; }
-
     // <summary> 切换到指定形态 </summary>
     /// <param name="style">目标形态</param>
     public void SwitchStyle(PlayerState style)

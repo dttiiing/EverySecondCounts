@@ -16,7 +16,6 @@ public class PlayerCollision : MonoBehaviour
     private IPlayer _currentPlayerForm;
     ///<summary>检测半径</summary>
     public float checkRadius = 0.1f;
-    private Rigidbody2D _rigidbody2D;
 
     private void Awake()
     {
@@ -27,7 +26,6 @@ public class PlayerCollision : MonoBehaviour
     {
         _groundLayer = LayerMask.GetMask("Ground");
         _weakLayer = LayerMask.NameToLayer("WeakGround");
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _playerStateController = GetComponent<PlayerStateController>();
         _playerStateController.onPlayerStyleChange.AddListener(() => { _currentPlayerForm = _playerStateController.GetPlayerStyle(); });
     }
@@ -45,14 +43,11 @@ public class PlayerCollision : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!_currentPlayerForm.IsBreakWallValid()) return;
-        WeakGrid weakGrid = collision.gameObject.GetComponent<WeakGrid>();
+        if (_currentPlayerForm == null || _currentPlayerForm.GetPlayerState() != PlayerState.HARD) return;
+
         ContactPoint2D[] contactPoints = collision.contacts;
-        //获取实际碰撞坐标
-        foreach (var contact in contactPoints)
-        {
-            Vector2 contactPoint = contact.point;
-            weakGrid.DestroySingleTile(contactPoint);
-        }
+        WeakGrid weakGrid = collision.gameObject.GetComponent<WeakGrid>();
+        if (weakGrid == null) return;
+        weakGrid.EraseTile(contactPoints);
     }
 }

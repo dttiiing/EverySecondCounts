@@ -14,7 +14,7 @@ public class StyleHar : MonoBehaviour, IPlayer
     private void Init()
     {
     }
-    public int playerState() { return (int)PlayerState.HARD; }
+    public PlayerState GetPlayerState() { return PlayerState.HARD; }
 
     public bool IsJumpTwiceValid() { return false; }
 

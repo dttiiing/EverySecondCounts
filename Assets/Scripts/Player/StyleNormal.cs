@@ -14,8 +14,7 @@ public class StyleNormal : MonoBehaviour, IPlayer
     private void Init()
     {
     }
-    public int playerState() { return (int)PlayerState.NORMAL; }
-
+    public PlayerState GetPlayerState() { return PlayerState.NORMAL; }
     public bool IsJumpTwiceValid() { return true; }
 
     public bool IsBreakWallValid() { return false; }
