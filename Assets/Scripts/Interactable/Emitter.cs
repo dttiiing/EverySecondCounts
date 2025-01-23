@@ -22,6 +22,7 @@ public class Emitter : MonoBehaviour
     {
         isOpen = !isOpen;
         shine.gameObject.SetActive(isOpen);
+        colli.enabled = isOpen;
 
         Debug.Log($"{name}'s cur state is {isOpen}");
     }
