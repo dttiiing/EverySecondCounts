@@ -6599,6 +6599,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Emitter_Hard
       objectReference: {fileID: 0}
+    - target: {fileID: 7841164835372493746, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841164835372493746, guid: 8774db10c36ee7242a5b003edd1dce1e, type: 3}
+      propertyPath: m_Offset.y
+      value: -2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
