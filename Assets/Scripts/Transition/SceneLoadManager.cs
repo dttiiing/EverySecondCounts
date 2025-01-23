@@ -57,6 +57,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         _targetScene = targetScene;
         _cameraPos = cameraPos;
         _isReset = isReset;
+        player.SetActive(false);
 
         StartCoroutine(TransitionToScene());
     }

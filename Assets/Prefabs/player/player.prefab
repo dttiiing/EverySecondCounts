@@ -187,10 +187,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: hardPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 679462406301147381, guid: e2386d62d3b499748ad5db004429008f, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4464662765970258731, guid: e2386d62d3b499748ad5db004429008f, type: 3}
       propertyPath: m_RootOrder
       value: 0

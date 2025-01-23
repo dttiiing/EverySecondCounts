@@ -41,12 +41,12 @@ public class PlayerStateController : MonoBehaviour
         if (style == _state) return;
         if (style == PlayerState.DEAD)
         {
-            SceneLoadManager sceneLoadManager = GetComponent<SceneLoadManager>();
-            if (sceneLoadManager != null)
+            if (GameObject.Find("SceneLoadManager").TryGetComponent<SceneLoadManager>(out var sceneLoadManager))
             {
                 sceneLoadManager.ReloadCurScene();
                 _state = firstState;
             }
+            return;
         }
         for (int i = 0; i < _playerStyles.Length; i++) _playerStyles[i].SetActive(i == (int)style);
         _state = style;
