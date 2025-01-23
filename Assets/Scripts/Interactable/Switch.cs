@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour, IInteractable
 {
+    public AudioSource audioSource;
     public GameObject handleLeft;
     public GameObject handleRight;
     public List<Emitter> emitterList;
@@ -15,6 +16,7 @@ public class Switch : MonoBehaviour, IInteractable
     {
         if (canOperate && Input.GetKeyDown(KeyCode.E))
         {
+            audioSource.Play();
             SwitchHandleState();
             TriggerAction();
         }

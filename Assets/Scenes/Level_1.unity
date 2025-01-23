@@ -5572,6 +5572,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 660938937}
     m_Modifications:
     - target: {fileID: 130623009979118508, guid: 70f5ef4bac4e19b44863952042db3268, type: 3}
+      propertyPath: resetPos.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 130623009979118508, guid: 70f5ef4bac4e19b44863952042db3268, type: 3}
+      propertyPath: resetPos.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 130623009979118508, guid: 70f5ef4bac4e19b44863952042db3268, type: 3}
       propertyPath: cameraPos.x
       value: 20
       objectReference: {fileID: 0}

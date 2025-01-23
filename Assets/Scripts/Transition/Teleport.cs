@@ -6,6 +6,7 @@ public class Teleport : MonoBehaviour
 {
     public GameSceneSO targetScene;
     public Vector3 cameraPos;
+    public Vector3 resetPos;
     public bool isReset = false;
 
     private void Start()
@@ -15,7 +16,7 @@ public class Teleport : MonoBehaviour
 
     public void TransitionToNextScene()
     {
-        TransitionEvent.CallLoadSceneRequestEvent(targetScene, cameraPos, isReset);
+        TransitionEvent.CallLoadSceneRequestEvent(targetScene, cameraPos, resetPos, isReset);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -17,13 +17,13 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     public AnimationClip fadeOutClip;
 
     private GameSceneSO _curScene;
-
     private GameSceneSO _targetScene;
     private Vector3 _cameraPos;
+    private bool _isLoading = false;
+
     private bool _isReset = false;
     private Vector3 _resetPos;
-
-    private bool _isLoading = false;
+    private PlayerState _resetState;
 
     private void Awake()
     {
@@ -45,10 +45,10 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     public void ReloadCurScene()
     {
-        OnLoadSceneRequest(_curScene, Vector3.zero, true);
+        OnLoadSceneRequest(_curScene, Vector3.zero, _resetPos, true);
     }
 
-    private void OnLoadSceneRequest(GameSceneSO targetScene, Vector3 cameraPos, bool isReset = false)
+    private void OnLoadSceneRequest(GameSceneSO targetScene, Vector3 cameraPos, Vector3 resetPos, bool isReset = false)
     {
         if (_isLoading) return;
 
@@ -56,6 +56,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
         _targetScene = targetScene;
         _cameraPos = cameraPos;
+        _resetPos = resetPos;
         _isReset = isReset;
         player.SetActive(false);
 
@@ -87,6 +88,10 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         // move camera
         mainCamera.transform.position = _isReset ? mainCamera.transform.position : _cameraPos;
 
+        if(_isReset)
+        {
+            player.transform.position = _resetPos;
+        }
         player.SetActive(_targetScene.sceenType == SceneType.Location);
 
         if (_isReset)

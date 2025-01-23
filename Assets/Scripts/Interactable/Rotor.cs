@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotor : MonoBehaviour, IInteractable
 {
+    public AudioSource audioSource;
     public List<Emitter> emitterList;
 
     private bool canOperate = false;
@@ -12,6 +13,7 @@ public class Rotor : MonoBehaviour, IInteractable
     {
         if (canOperate && Input.GetKeyDown(KeyCode.E))
         {
+            audioSource.Play();
             TriggerAction();
         }
     }
