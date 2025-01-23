@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour, IInteractable
 {
-    public GameObject handleImage;
+    public GameObject handleLeft;
+    public GameObject handleRight;
     public List<Emitter> emitterList;
 
     private bool canOperate = false;
+    private bool isOn = false;
 
     private void Update()
     {
         if (canOperate && Input.GetKeyDown(KeyCode.E))
         {
-            Anim();
+            SwitchHandleState();
             TriggerAction();
         }
     }
@@ -26,10 +28,12 @@ public class Switch : MonoBehaviour, IInteractable
         }
     }
 
-    private void Anim()
+    private void SwitchHandleState()
     {
-        Vector3 curDir = handleImage.transform.localScale;
-        handleImage.transform.localScale = new Vector3(curDir.x * -1, 1, 1);
+        isOn = !isOn;
+
+        handleLeft.SetActive(!isOn);
+        handleRight.SetActive(isOn);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
