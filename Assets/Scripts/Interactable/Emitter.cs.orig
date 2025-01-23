@@ -63,7 +63,11 @@ public class Emitter : MonoBehaviour
         if (collision.tag == "Player")
         {
             // todo: change player state here
+<<<<<<< HEAD
             collision.GetComponentInParent<PlayerStateController>()?.SwitchStyle(curState);
+=======
+            collision.GetComponentInParent<PlayerStateController>()?.ChangePlayerState((int)curState);
+>>>>>>> 58e057bde1da668274192ca8b3ca61a1ec9ce34b
         }
     }
 }

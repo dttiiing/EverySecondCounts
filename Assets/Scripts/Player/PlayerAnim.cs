@@ -1,7 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+public class PlayerAnim : MonoBehaviour
 {
     ///<summary>动画控制器</summary>
     private Animator _animator;
@@ -10,11 +10,9 @@ public class PlayerAnimation : MonoBehaviour
     ///<summary>刚体组件</summary>
     private Rigidbody2D _rigidbody;
     ///<summary>物理检查组件</summary>
-    private PhysicsCheck _physicsCheck;
+    private PlayerCollision _playerCollision;
     ///<summary>角色组件</summary>
-    private Player _player;
-    ///<summary>玩家控制组件</summary>
-    private PlayerController _playerController;
+    private PlayerMovement _playerMove;
 
     private void Awake()
     {
@@ -39,19 +37,17 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _inputControl = new PlayerInputControl();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _physicsCheck = GetComponent<PhysicsCheck>();
-        _player = GetComponent<Player>();
-        _playerController = GetComponent<PlayerController>();
+        _rigidbody = GetComponentInParent<Rigidbody2D>();
+        _playerCollision = GetComponentInParent<PlayerCollision>();
+        _playerMove = GetComponentInParent<PlayerMovement>();
     }
     ///<summary>根据玩家输入和角色状态设置动画状态</summary>
     private void SetAnimation()
     {
         float moveInputX = math.abs(_inputControl.GamePlay.Move.ReadValue<Vector2>().x);
-        bool isMoving = moveInputX > 0.01 ? true : false;
+        bool isMoving = moveInputX > 0.01;
         _animator.SetBool("isMoving", isMoving);
-        _animator.SetBool("isDead", _playerController.isDead);
-        _animator.SetBool("isGround", _physicsCheck.IsGround());
+        _animator.SetBool("isGround", _playerCollision.OnGround());
         _animator.SetFloat("velocityY", _rigidbody.velocity.y);
 
     }
