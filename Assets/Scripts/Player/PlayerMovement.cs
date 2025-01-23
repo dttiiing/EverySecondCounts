@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioSource audioSource;
     ///<summary>玩家键盘/控制器输入控制</summary>
     public PlayerInputControl inputControl;
     ///<summary>角色刚体</summary>
@@ -89,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         if (_playerCollision.OnGround())
         {
             _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
+            audioSource.Play();
+
             _isFirstJump = true;
         }
         else
@@ -98,9 +101,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                 _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
+                audioSource.Play();
             }
             _isFirstJump = false;//无论是否执行二段跳，都将第一次跳跃标记设为false
         }
-
     }
 }
