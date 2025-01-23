@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using UnityEngine;
 
 public enum PlayerState
 {
@@ -10,6 +11,8 @@ public enum PlayerState
     SOFT = 1,
     [StateName("hardPlayer")]
     HARD = 2,
+    [StateName("dead")]
+    DEAD = 3
 }
 
 [AttributeUsage(AttributeTargets.Field)]

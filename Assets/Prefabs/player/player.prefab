@@ -80,6 +80,7 @@ MonoBehaviour:
   onPlayerStyleChange:
     m_PersistentCalls:
       m_Calls: []
+  firstState: 0
 --- !u!114 &325581947132194154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 679462406301147381, guid: e2386d62d3b499748ad5db004429008f, type: 3}
       propertyPath: m_Name
       value: hardPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 679462406301147381, guid: e2386d62d3b499748ad5db004429008f, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4464662765970258731, guid: e2386d62d3b499748ad5db004429008f, type: 3}
       propertyPath: m_RootOrder

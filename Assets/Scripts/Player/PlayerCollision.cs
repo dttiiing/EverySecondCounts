@@ -41,4 +41,11 @@ public class PlayerCollision : MonoBehaviour
         Gizmos.color = Color.red; ;
         Gizmos.DrawWireSphere((Vector2)transform.position, checkRadius);
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Trap"))
+        {
+            _playerStateController.SwitchStyle(PlayerState.DEAD);
+        }
+    }
 }
