@@ -5,18 +5,22 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public GameSceneSO targetScene;
-    public bool isResetPlayerPos = false;
-    public Vector3 targetPosition;
-    public bool isPlayAnim = false;
+    public Vector3 cameraPos;
+    public bool isReset = false;
+
+    private void Start()
+    {
+
+    }
 
     public void TransitionToNextScene()
     {
-        TransitionEvent.CallLoadSceneRequestEvent(targetScene, isResetPlayerPos, targetPosition, isPlayAnim);
+        TransitionEvent.CallLoadSceneRequestEvent(targetScene, cameraPos, isReset);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             TransitionToNextScene();
         }

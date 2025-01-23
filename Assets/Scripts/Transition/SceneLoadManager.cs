@@ -6,24 +6,29 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadManager : MonoBehaviour
+public class SceneLoadManager : Singleton<SceneLoadManager>
 {
+    public GameObject mainCamera;
     public GameObject player;
     public GameSceneSO firstScene;
-    //public AnimationClip loadSceneAnim;
-    //public AnimationClip unloadSceneAnim;
+
+    public Animation anim;
+    public AnimationClip fadeInClip;
+    public AnimationClip fadeOutClip;
 
     private GameSceneSO _curScene;
 
     private GameSceneSO _targetScene;
-    private bool _isResetPlayerPos = false;
-    private Vector3 _targetPos;
-    private bool _isPlayAnim = false;
+    private Vector3 _cameraPos;
+    private bool _isReset = false;
+    private Vector3 _resetPos;
 
     private bool _isLoading = false;
 
     private void Awake()
     {
+        player.SetActive(false);
+
         _curScene = firstScene;
         _curScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
     }
@@ -38,58 +43,58 @@ public class SceneLoadManager : MonoBehaviour
         TransitionEvent.LoadSceneRequestEvent -= OnLoadSceneRequest;
     }
 
-    private void OnLoadSceneRequest(GameSceneSO targetScene, bool isResetPlayerPos, Vector3 targetPos, bool isPlayAnim)
+    public void ReloadCurScene()
+    {
+        OnLoadSceneRequest(_curScene, Vector3.zero, true);
+    }
+
+    private void OnLoadSceneRequest(GameSceneSO targetScene, Vector3 cameraPos, bool isReset = false)
     {
         if (_isLoading) return;
 
         _isLoading = true;
 
         _targetScene = targetScene;
-        _isResetPlayerPos = isResetPlayerPos;
-        _targetPos = targetPos;
-        _isPlayAnim = isPlayAnim;
+        _cameraPos = cameraPos;
+        _isReset = isReset;
 
         StartCoroutine(TransitionToScene());
     }
 
     private IEnumerator TransitionToScene()
     {
-        if (_isPlayAnim)
+        if (_isReset)
         {
-            // todo: play unload anim
+            anim.Play(fadeOutClip.name);
+            yield return new WaitForSeconds(1.5f);
         }
 
+        player.SetActive(false);
+
+        // unload current scene
         if (_curScene != null)
         {
             yield return _curScene.sceneReference.UnLoadScene();
-            player.SetActive(false);
         }
 
+        // load next scene
         if (_targetScene != null)
         {
-            var loadOperation = _targetScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
-            loadOperation.Completed += OnLoadSceneCompleted;
-
+            yield return _targetScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
         }
-    }
 
-    private void OnLoadSceneCompleted(AsyncOperationHandle<SceneInstance> obj)
-    {
+        // move camera
+        mainCamera.transform.position = _isReset ? mainCamera.transform.position : _cameraPos;
+
+        player.SetActive(_targetScene.sceenType == SceneType.Location);
+
+        if (_isReset)
+        {
+            anim.Play(fadeInClip.name);
+            yield return new WaitForSeconds(1.5f);
+        }
+
         _curScene = _targetScene;
-
-        if (_isResetPlayerPos)
-        {
-            player.transform.position = _targetPos;
-        }
-        player.SetActive(true);
-
-        if (_isPlayAnim)
-        {
-            // todo: play load anim
-        }
-
         _isLoading = false;
     }
-
-    
 }
