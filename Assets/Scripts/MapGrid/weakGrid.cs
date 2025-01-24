@@ -26,22 +26,24 @@ public class WeakGrid : MonoBehaviour
         ContactPoint2D[] contactPoints = collision.contacts;
         foreach (var contact in contactPoints)
         {
-            Vector3Int tmp = FindClosestTile(contact.point);
-            if (_tilemap.HasTile(tmp))
+            Vector3Int closestPositon = FindClosestTile(contact.point);
+            if (_tilemap.HasTile(closestPositon))
             {
-                _tilemap.SetTile(tmp, null);
+                _tilemap.SetTile(closestPositon, null);
                 _tilemap.RefreshAllTiles();
+                Debug.Log("break wall :" + closestPositon);
             }
             else
-                Debug.LogWarning("How the fuck it even possible " + _tilemap.WorldToCell(contact.point) + " " + tmp.ToString());
+                Debug.Log("can't find wall near:" + closestPositon);
         }
     }
 
     private Vector3Int FindClosestTile(Vector2 contactPoint)
     {
         Vector3Int tilePosition = _tilemap.WorldToCell(contactPoint);
+        if (_tilemap.HasTile(tilePosition)) return tilePosition;
         float minDistance = Mathf.Infinity;
-        Vector3Int closestTilePosition = Vector3Int.zero;
+        Vector3Int closestTilePosition = tilePosition; //if no valid neighbor tile, return itself
         for (int xOffset = -1; xOffset <= 1; xOffset++)
         {
             for (int yOffset = -1; yOffset <= 1; yOffset++)
