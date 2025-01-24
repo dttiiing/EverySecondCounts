@@ -14,6 +14,15 @@ public class Teleport : MonoBehaviour
 
     }
 
+    public void StartNewGame()
+    {
+        SceneLoadManager sceneLoadManager = GameObject.Find("SceneLoadManager").GetComponent<SceneLoadManager>();
+        if(sceneLoadManager!=null)
+        {
+            sceneLoadManager.InitPlayerPos();
+        }
+    }
+
     public void TransitionToNextScene()
     {
         TransitionEvent.CallLoadSceneRequestEvent(targetScene, cameraPos, resetPos, isReset);
