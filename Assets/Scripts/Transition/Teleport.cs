@@ -19,6 +19,15 @@ public class Teleport : MonoBehaviour
         TransitionEvent.CallLoadSceneRequestEvent(targetScene, cameraPos, resetPos, isReset);
     }
 
+    public void StartNewGame()
+    {
+        SceneLoadManager sceneLoadManager = GameObject.Find("SceneLoadManager").GetComponent<SceneLoadManager>();
+        if(sceneLoadManager != null)
+        {
+            sceneLoadManager.InitPLayerPos();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

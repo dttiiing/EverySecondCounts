@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadManager : Singleton<SceneLoadManager>
+public class SceneLoadManager : MonoBehaviour
 {
     public GameObject mainCamera;
     public GameObject player;
@@ -46,6 +46,11 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     public void ReloadCurScene()
     {
         OnLoadSceneRequest(_curScene, Vector3.zero, _resetPos, true);
+    }
+
+    public void InitPLayerPos()
+    {
+        player.transform.position = new Vector3(-8, 6, 0);
     }
 
     private void OnLoadSceneRequest(GameSceneSO targetScene, Vector3 cameraPos, Vector3 resetPos, bool isReset = false)
@@ -88,7 +93,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         // move camera
         mainCamera.transform.position = _isReset ? mainCamera.transform.position : _cameraPos;
 
-        if(_isReset)
+        if (_isReset)
         {
             player.transform.position = _resetPos;
         }
