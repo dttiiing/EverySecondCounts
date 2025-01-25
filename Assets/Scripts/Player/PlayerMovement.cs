@@ -64,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
         inputControl = new PlayerInputControl();
         _playerCollision = GetComponent<PlayerCollision>();
         _playerStateController = GetComponent<PlayerStateController>();
-        _playerStateController.onPlayerStyleChange.AddListener(() => { _currentPlayerForm = _playerStateController.GetPlayerStyle(); });
+        _playerStateController.onPlayerStyleChange.AddListener(() => { 
+            _currentPlayerForm = _playerStateController.GetPlayerStyle();
+            Debug.Log($"player state change, cur state is {_currentPlayerForm}");
+        });
     }
     ///<summary>控制玩家移动</summary>
     public void PlayerMove()
@@ -86,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
     ///<summary>处理玩家跳跃</summary>
     private void Jump(InputAction.CallbackContext obj)
     {
+        if(_currentPlayerForm == null)
+        {
+            Debug.Log($"jump but _currentPlayerForm is null");
+        }
+
         // 当在地面上时执行跳跃
         if (_playerCollision.OnGround())
         {

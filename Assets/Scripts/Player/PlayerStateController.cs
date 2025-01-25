@@ -10,7 +10,12 @@ public class PlayerStateController : MonoBehaviour
     private PlayerState _state = PlayerState.INVALID;
     public PlayerState firstState = PlayerState.NORMAL;
 
-    void Awake()
+    //void Awake()
+    //{
+    //    Init();
+    //}
+
+    private void Start()
     {
         Init();
     }
