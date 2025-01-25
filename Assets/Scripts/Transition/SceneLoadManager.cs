@@ -12,9 +12,7 @@ public class SceneLoadManager : MonoBehaviour
     public GameObject player;
     public GameSceneSO firstScene;
 
-    public Animation anim;
-    public AnimationClip fadeInClip;
-    public AnimationClip fadeOutClip;
+    public FadeController fadeController;
 
     private GameSceneSO _curScene;
     private GameSceneSO _targetScene;
@@ -45,6 +43,11 @@ public class SceneLoadManager : MonoBehaviour
 
     public void ReloadCurScene()
     {
+        fadeController.PlayFadeAnim();
+    }
+
+    public void DoReload()
+    {
         OnLoadSceneRequest(_curScene, Vector3.zero, _resetPos, true);
     }
 
@@ -70,12 +73,6 @@ public class SceneLoadManager : MonoBehaviour
 
     private IEnumerator TransitionToScene()
     {
-        if (_isReset)
-        {
-            anim.Play(fadeOutClip.name);
-            yield return new WaitForSeconds(1.5f);
-        }
-
         player.SetActive(false);
 
         // unload current scene
@@ -98,12 +95,6 @@ public class SceneLoadManager : MonoBehaviour
             player.transform.position = _resetPos;
         }
         player.SetActive(_targetScene.sceenType == SceneType.Location);
-
-        if (_isReset)
-        {
-            anim.Play(fadeInClip.name);
-            yield return new WaitForSeconds(1.5f);
-        }
 
         _curScene = _targetScene;
         _isLoading = false;
