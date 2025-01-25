@@ -85,6 +85,7 @@ public class SceneLoadManager : MonoBehaviour
         if (_targetScene != null)
         {
             yield return _targetScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            _curScene = _targetScene;
         }
 
         // move camera
@@ -96,7 +97,6 @@ public class SceneLoadManager : MonoBehaviour
         }
         player.SetActive(_targetScene.sceenType == SceneType.Location);
 
-        _curScene = _targetScene;
         _isLoading = false;
     }
 }
